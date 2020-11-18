@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>История</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/style_all.css">
+</head>
+<body>
+    <div>
+        <h1 align="center">Все записи</h1>
+        {% if name_temp %}
+            <h3 align="center">Время соответствует UTC зоне</h3>
+            <div align="center">
+                Температура за историю наблюдений
+            </div>
+            <img src="{{ url_for('static', filename=name_temp) }}" />
+        {% endif %}
+        {% for note in history %}
+            <h2>{{ note.time }}:</h2>
+            <div>
+                <label>Место:</label>
+                {{ note.place }}
+            </div>
+            <div>
+                <label>Температура:</label>
+                {{ note.temp }}
+            </div>
+            <div>
+                <label>Ветер:</label>
+                {{ note.wind }}
+            </div>
+            <div>
+                <label>Осадки:</label>
+                {{ note.fallout }}
+            </div>
+            <div>
+                <label>Облака:</label>
+                {{ note.cloud }}
+            </div>
+            <div>
+                <label>Явления:</label>
+                {{ note.phenomenon }}
+            </div>
+            <div>
+                <label>Комментарий:</label>
+                {{ note.comment }}
+            </div>
+            {% if note.photo %}
+                <img src="{{ url_for('static', filename=note.photo) }}" />
+            {% else %}
+                <div>
+                    <label>Фотографии нет</label>
+                </div>
+            {% endif %}
+        {% else %}
+        <h3 align="center">Записей еще нет</h3>
+        {% endfor %}
+    </div>
+    <form action="{{ url_for('index') }}" method="get">
+            <button type="submit">Вернуться на главную</button>
+    </form>
+</body>
+</html>

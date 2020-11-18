@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Новая запись</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="../static/style_all.css">
+	</head>
+	<body>
+		<form class="input-data" action="{{ url_for('new_note') }}" method="post" enctype=multipart/form-data>
+			<h1 align="center">Новая запись</h1>
+			<div>
+				<label>Местоположение</label>
+				<input name="place" type="text" placeholder="Долгопрудный">
+			</div>
+			<div>
+				<label>Температура</label>
+				<input name="temp" type="text" placeholder="в градусах Цельсия">
+			</div>
+			<div>
+				<label>Ветер</label>
+				<input name="wind" type="text" placeholder="сильный, слабый, штиль">
+			</div>
+			<div>
+				<label>Осадки</label>
+				<input name="fallout" type="text" placeholder="дождь, снег, град">
+			</div>
+			<div>
+				<label>Облачность</label>
+				<input name="cloud" type="text">
+			</div>
+			<div>
+				<label>Явления</label>
+				<input name="phenomenon" type="text" placeholder="гроза, радуга, ледяной дождь">
+			</div>
+			<div>
+				<label>Фото</label>
+				<input name="photo" type="file" accept="image/png, image/jpg, image/jpeg">
+			</div>
+			<div>
+				<label>Комментарий</label>
+				<textarea name="comment"></textarea>
+			</div>
+			<div>
+				<button type="submit">Отправить</button>
+			</div>
+			<div>
+				<button type="reset">Сбросить</button>
+			</div>
+		</form>
+		<br>
+		<form align="center" action="{{ url_for('index') }}" method="get">
+            <button type="submit">Вернуться на главную</button>
+        </form>
+	</body>
+</html>

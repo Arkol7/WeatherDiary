@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="width=device-width; text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/style_all.css">
+    <title>Дневник погоды</title>
+</head>
+<body>
+    <div>
+        <h1 align="center">Дневник погоды</h1>
+        <form align="center" action="{{ url_for('index') }}" method="post">
+            <div>
+                <button name="choose" value="Write" type="submit">Сделать запись</button>
+            </div>
+            <div>
+                <button name="choose" value="Show" type="submit">Посмотреть все записи</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
