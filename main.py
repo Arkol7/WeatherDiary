@@ -34,17 +34,17 @@ def new_note():
         filename = None
         file = request.files['photo']
         if file and allowed_file(file.filename):
-            filename = os.path.join(app.config['UPLOAD_FOLDER'], 'img_' + note_id + '.png')
+            filename = 'img_' + note_id + '.png'
             file.save(os.path.join('static', filename))
         db.set('note'+note_id, pickle.dumps(dict(
                                         time=datetime.strftime(datetime.now(tz=timezone.utc), '%d.%m.%y %H:%M:%S'),
-                                        place = request.form['place'],
-                                        temp = request.form['temp'],
-                                        wind = request.form['wind'],
-                                        fallout = request.form['fallout'],
-                                        cloud = request.form['cloud'],
-                                        phenomenon = request.form['phenomenon'],
-                                        comment = request.form['comment'],
+                                        place=request.form['place'],
+                                        temp=request.form['temp'],
+                                        wind=request.form['wind'],
+                                        fallout=request.form['fallout'],
+                                        cloud=request.form['cloud'],
+                                        phenomenon=request.form['phenomenon'],
+                                        comment=request.form['comment'],
                                         photo=filename
                                         )))
         db.lpush('history', note_id)
@@ -74,14 +74,14 @@ def show_all():
             pass
         history.append(data)
     if temp_name:
-        os.remove('static/images/temp'+temp_name+'.png')
+        os.remove('static/temp'+temp_name+'.png')
     if len(temp_history) != 0:
         temp_name = str(int(datetime.timestamp(datetime.now())))
         plt.plot(time_history[::-1], temp_history[::-1], 'ro-')
         plt.xticks(rotation=45)
         plt.grid(True)
-        plt.savefig('static/images/temp' + temp_name + '.png', bbox_inches='tight')
-        picture_name = 'images/temp'+temp_name+'.png'
+        plt.savefig('static/temp' + temp_name + '.png', bbox_inches='tight')
+        picture_name = 'temp' + temp_name + '.png'
     else:
         picture_name = None
     return render_template('history.html', history=history, name_temp=picture_name)
